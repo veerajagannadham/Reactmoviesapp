@@ -1,3 +1,4 @@
+import MovieReviewPage from "./pages/movieReviewPage";
 import React from "react";
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter, Route, Navigate, Routes, Link } from "react-router-dom";
@@ -17,6 +18,7 @@ const App = () => {
         </li>
       </ul>
       <Routes>
+        <Route path="/reviews/:id" element={<MovieReviewPage/>} />
         <Route path="/movies/favourites" element={<FavouriteMoviesPage />} />
         <Route path="/movies/:id" element={<MoviePage />} />
         <Route path="/" element={<HomePage />} />
