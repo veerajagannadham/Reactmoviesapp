@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Navigate, Routes, Link } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import MoviePage from "./pages/movieDetailsPage";
 import FavouriteMoviesPage from "./pages/favouriteMoviesPage"; // NEW
+import UpcomingMoviesPage from './pages/upcomingmoviesPage';
 
 const App = () => {
   return (
@@ -17,6 +18,9 @@ const App = () => {
         <li>
           <Link to="/movies/favourites">Favourites</Link>
         </li>
+        <li>
+          <Link to="/upcomingmovies">Upcoming Movies</Link>
+        </li>
       </ul>
       <SiteHeader />      {/* New Header  */}
       <Routes>
@@ -24,6 +28,7 @@ const App = () => {
         <Route path="/movies/favourites" element={<FavouriteMoviesPage />} />
         <Route path="/movies/:id" element={<MoviePage />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/upcomingmovies" element={<UpcomingMoviesPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
