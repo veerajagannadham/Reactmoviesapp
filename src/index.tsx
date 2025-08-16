@@ -1,3 +1,4 @@
+import SiteHeader from './components/siteHeader'
 import MovieReviewPage from "./pages/movieReviewPage";
 import React from "react";
 import ReactDOM from 'react-dom/client'
@@ -17,6 +18,7 @@ const App = () => {
           <Link to="/movies/favourites">Favourites</Link>
         </li>
       </ul>
+      <SiteHeader />      {/* New Header  */}
       <Routes>
         <Route path="/reviews/:id" element={<MovieReviewPage/>} />
         <Route path="/movies/favourites" element={<FavouriteMoviesPage />} />
