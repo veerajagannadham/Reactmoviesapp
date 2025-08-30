@@ -57,5 +57,19 @@ export interface MovieListPageTemplateProps extends BaseMovieListProps {
     content: string
     author: string
   }
+   
+export interface GenreData {
+  genres: {
+    id: string;
+    name: string
+  }[];
+}
+
+export interface DiscoverMovies {
+  page: number;	
+  total_pages: number;
+  total_results: number;
+  results: BaseMovieProps[];
+}
 
 
