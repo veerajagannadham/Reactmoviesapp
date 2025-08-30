@@ -14,6 +14,10 @@ export const genreFilter = (movie: BaseMovieProps, value: string) => {
     return genreId > 0 && genreIds ? genreIds.includes(genreId) : true;
 };
 
+export const languageFilter = (movie: BaseMovieProps, value: string): boolean => {
+    return movie.original_language === value || value === "all";
+};
+
 const styles = {
     root: {
         backgroundColor: "#bfbfbf",
@@ -30,10 +34,11 @@ interface MovieFilterUIProps {
     onFilterValuesChange: (f: string, s: string) => void;
     titleFilter: string;
     genreFilter: string;
+    languageFilter: string; // Add languageFilter prop
 }
 
 
-const MovieFilterUI: React.FC<MovieFilterUIProps> = ({ onFilterValuesChange, titleFilter, genreFilter }) => {
+const MovieFilterUI: React.FC<MovieFilterUIProps> = ({ onFilterValuesChange, titleFilter, genreFilter, languageFilter }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     return (
@@ -55,6 +60,7 @@ const MovieFilterUI: React.FC<MovieFilterUIProps> = ({ onFilterValuesChange, tit
                     onUserInput={onFilterValuesChange}
                     titleFilter={titleFilter}
                     genreFilter={genreFilter}
+                    languageFilter={languageFilter} // Pass languageFilter to FilterCard
                 />
             </Drawer>
         </>

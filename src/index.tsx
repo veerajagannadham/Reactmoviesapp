@@ -14,7 +14,10 @@ import FantasyMoviesContextProvider from "./contexts/fantasyMoviesContext";
 import FantasyMoviePage from "./pages/fantasyMoviePage";
 import FantasyMovieShowPage from "./pages/fantasyMovieShowPage";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
-
+import PopularMoviesPage from './pages/popularMoviesPage';
+import TopRatedMoviesPage from "./pages/topRatedMoviesPage";
+import ActorsPage from "./pages/actorsPage";
+import ActorDetailsPage from "./pages/actorDetailsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -44,6 +47,10 @@ const App = () => {
               <Route path="/fantasyshow" element={<FantasyMovieShowPage />} />
               <Route path="/reviews/:id" element={<MovieReviewPage/>} />
               <Route path="/reviews/form" element={<AddMovieReviewPage/>} />
+              <Route path="/movies/popular" element={<PopularMoviesPage />} />
+              <Route path="/movies/top-rated" element={<TopRatedMoviesPage />} />
+              <Route path="/actors" element={<ActorsPage />} />
+              <Route path="/actors/:id" element={<ActorDetailsPage />} />
             </Routes>
         </MoviesContextProvider>
         </FantasyMoviesContextProvider>

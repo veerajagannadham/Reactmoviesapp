@@ -71,4 +71,92 @@ export const getUpcomingMovies = () => {
       .then(res => res.json())
       .then(json => json.results);
   };
-  
+
+export const getPopularMovies = (page = 1) => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/popular?api_key=${
+      import.meta.env.VITE_TMDB_KEY
+    }&page=${page}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch popular movies. Status: ${response.status}`
+      );
+    }
+    return response.json();
+  });
+};
+
+export const getTopRatedMovies = (page: number = 1) => {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/top_rated?api_key=${
+      import.meta.env.VITE_TMDB_KEY
+    }&page=${page}`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch top-rated movies. Status: ${response.status}`
+        );
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return {
+        results: data.results,
+        total_pages: data.total_pages,
+        total_results: data.total_results,
+      };
+    })
+    .catch((error) => {
+      console.error("Error fetching top-rated movies:", error);
+      throw error;
+    });
+};
+
+export const getActorImages = (actorId: number) => {
+  return fetch(
+    `https://api.themoviedb.org/3/person/${actorId}/images?api_key=${
+      import.meta.env.VITE_TMDB_KEY
+    }`
+  ).then((response) => {
+    if (!response.ok) throw new Error(`Failed to fetch actor images`);
+    return response.json();
+  });
+};
+
+export const getActorDetails = (actorId: number) => {
+  return fetch(
+    `https://api.themoviedb.org/3/person/${actorId}?api_key=${
+      import.meta.env.VITE_TMDB_KEY
+    }`
+  ).then((response) => {
+    if (!response.ok) throw new Error(`Failed to fetch actor details`);
+    return response.json();
+  });
+};
+
+export const getActorsList = (page: number = 1) => {
+  return fetch(
+    `https://api.themoviedb.org/3/person/popular?api_key=${
+      import.meta.env.VITE_TMDB_KEY
+    }&page=${page}`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`Failed to fetch actors. Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      return {
+        results: data.results,
+        total_pages: data.total_pages,
+        total_results: data.total_results,
+      };
+    })
+    .catch((error) => {
+      console.error("Error fetching actors:", error);
+      throw error;
+    });
+};

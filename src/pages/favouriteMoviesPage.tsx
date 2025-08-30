@@ -5,11 +5,14 @@ import { useQueries } from "react-query";
 import { getMovie } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import useFiltering from "../hooks/useFiltering";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import MovieFilterUI, {
   titleFilter,
   genreFilter,
 } from "../components/movieFilterUI";
-import { BaseMovieProps } from "../types/interfaces";
+import RemoveFromFavourites from "../components/cardIcons/removeFromFavourites";
+import WriteReview from "../components/cardIcons/writeReview";
+
 
 const titleFiltering = {
   name: "title",
@@ -50,6 +53,7 @@ const FavouriteMoviesPage: React.FC = () => {
     ? filterFunction(allFavourites)
     : [];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const changeFilterValues = (type: string, value: string) => {
     const changedFilter = { name: type, value: value };
     const updatedFilterSet =
@@ -57,20 +61,21 @@ const FavouriteMoviesPage: React.FC = () => {
     setFilterValues(updatedFilterSet);
   };
 
-  const toDo = () => true;
+  // const toDo = () => true;
 
   return (
     <>
       <PageTemplate
-        title="Favourite Movies"
+        title="Favourites"
         movies={displayedMovies}
-        selectFavourite={toDo} action={function (m: BaseMovieProps): React.ReactNode {
-          throw new Error("Function not implemented.");
-        } }      />
-      <MovieFilterUI
-        onFilterValuesChange={changeFilterValues}
-        titleFilter={filterValues[0].value}
-        genreFilter={filterValues[1].value}
+        action={(movie) => {
+          return (
+            <>
+              <RemoveFromFavourites {...movie} />
+              <WriteReview {...movie} />
+            </>
+          );
+        }}
       />
     </>
   );
