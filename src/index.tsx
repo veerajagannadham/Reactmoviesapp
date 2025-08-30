@@ -32,7 +32,10 @@ const App = () => {
         <SiteHeader />
           <MoviesContextProvider>
             <Routes>
-               .....code as before .....
+              <Route path="/" element={<HomePage />} />
+              <Route path="/movies/:id" element={<MoviePage />} />
+              <Route path="/movies/favourites" element={<FavouriteMoviesPage />} />
+              <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
             </Routes>
         </MoviesContextProvider>
       </BrowserRouter>

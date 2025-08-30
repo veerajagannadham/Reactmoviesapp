@@ -9,6 +9,7 @@ import MovieFilterUI, {
   titleFilter,
   genreFilter,
 } from "../components/movieFilterUI";
+import { BaseMovieProps } from "../types/interfaces";
 
 const titleFiltering = {
   name: "title",
@@ -63,8 +64,9 @@ const FavouriteMoviesPage: React.FC = () => {
       <PageTemplate
         title="Favourite Movies"
         movies={displayedMovies}
-        selectFavourite={toDo}
-      />
+        selectFavourite={toDo} action={function (m: BaseMovieProps): React.ReactNode {
+          throw new Error("Function not implemented.");
+        } }      />
       <MovieFilterUI
         onFilterValuesChange={changeFilterValues}
         titleFilter={filterValues[0].value}
