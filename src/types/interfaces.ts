@@ -72,5 +72,20 @@ export interface DiscoverMovies {
   total_results: number;
   results: BaseMovieProps[];
 }
+export interface CastMember {
+  name: string;
+  role: string;
+  description: string;
+}
+
+export interface FantasyMovie {
+  title: string;
+  overview: string;
+  genre: string;
+  releaseDate: string;
+  runTime: number;
+  productionCompanies: string;
+  cast: CastMember[];
+}
 
 

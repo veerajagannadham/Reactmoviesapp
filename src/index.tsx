@@ -10,7 +10,9 @@ import UpcomingMoviesPage from './pages/upcomingmoviesPage';
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools';
 import MoviesContextProvider from "./contexts/moviesContext";
-
+import FantasyMoviesContextProvider from "./contexts/fantasyMoviesContext";
+import FantasyMoviePage from "./pages/fantasyMoviePage";
+import FantasyMovieShowPage from "./pages/fantasyMovieShowPage";
 
 
 const queryClient = new QueryClient({
@@ -29,6 +31,7 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
+      <FantasyMoviesContextProvider>
         <SiteHeader />
           <MoviesContextProvider>
             <Routes>
@@ -36,8 +39,11 @@ const App = () => {
               <Route path="/movies/:id" element={<MoviePage />} />
               <Route path="/movies/favourites" element={<FavouriteMoviesPage />} />
               <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
+              <Route path="/fantasy" element={<FantasyMoviePage />} />
+              <Route path="/fantasyshow" element={<FantasyMovieShowPage />} />
             </Routes>
         </MoviesContextProvider>
+        </FantasyMoviesContextProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
