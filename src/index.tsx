@@ -18,6 +18,10 @@ import PopularMoviesPage from './pages/popularMoviesPage';
 import TopRatedMoviesPage from "./pages/topRatedMoviesPage";
 import ActorsPage from "./pages/actorsPage";
 import ActorDetailsPage from "./pages/actorDetailsPage";
+import SignInPage from "./pages/signInPage";
+import ReviewsPage from "./pages/getTmdbReviews";
+import { UserProvider } from "./contexts/userContext";
+import { ActorsContextProvider } from "./contexts/actorsContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,30 +39,39 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-      <FantasyMoviesContextProvider>
-        <SiteHeader />
-          <MoviesContextProvider>
-            <Routes>
+        <UserProvider>
+          <FantasyMoviesContextProvider>
+          
+        <ActorsContextProvider>
+          <SiteHeader />
+            <MoviesContextProvider>
+              <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/movies/:id" element={<MoviePage />} />
-              <Route path="/movies/favourites" element={<FavouriteMoviesPage />} />
-              <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
-              <Route path="/fantasy" element={<FantasyMoviePage />} />
-              <Route path="/fantasyshow" element={<FantasyMovieShowPage />} />
-              <Route path="/reviews/:id" element={<MovieReviewPage/>} />
-              <Route path="/reviews/form" element={<AddMovieReviewPage/>} />
-              <Route path="/movies/popular" element={<PopularMoviesPage />} />
-              <Route path="/movies/top-rated" element={<TopRatedMoviesPage />} />
-              <Route path="/actors" element={<ActorsPage />} />
-              <Route path="/actors/:id" element={<ActorDetailsPage />} />
-            </Routes>
-        </MoviesContextProvider>
-        </FantasyMoviesContextProvider>
+                  <Route path="/movies/:id" element={<MoviePage />} />
+                  <Route path="/movies/favourites" element={<FavouriteMoviesPage />} />
+                  <Route path="/movies/upcoming" element={<UpcomingMoviesPage />} />
+                  <Route path="/reviews/:id" element={<MovieReviewPage/>} />
+                  <Route path="/reviews/form" element={<AddMovieReviewPage/>} />
+                  <Route path="/movies/popular" element={<PopularMoviesPage />} />
+                  <Route path="/movies/top-rated" element={<TopRatedMoviesPage />} />
+                  <Route path="/actors" element={<ActorsPage />} />
+                  <Route path="/actors/:id" element={<ActorDetailsPage />} />
+                  <Route path="/fantasy" element={<FantasyMoviePage />} />
+                  <Route path="/fantasyshow" element={<FantasyMovieShowPage />} />
+                  <Route path="/signin" element={<SignInPage />} />
+                  <Route path="*" element={<Navigate to="/" />} />
+                  <Route path="/myfavouritereviews" element={<ReviewsPage />} />
+              </Routes>
+          </MoviesContextProvider>
+          </ActorsContextProvider>
+          </FantasyMoviesContextProvider>
+          </UserProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
-};
+}
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

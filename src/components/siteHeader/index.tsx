@@ -11,32 +11,56 @@ import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useUser } from "../../contexts/userContext"; 
 
 const styles = {
-    title: {
-      flexGrow: 1,
-    },
-  };
+  title: {
+    flexGrow: 1,
+  },
+};
 
 const Offset = styled("div")(({ theme }) => theme.mixins.toolbar);
 
 const SiteHeader: React.FC = () => {
   const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement|null>(null);
+  const { isLoggedIn, setIsLoggedIn } = useUser(); 
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const open = Boolean(anchorEl);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
-  const menuOptions = [
+  // Menu options for logged-out users
+  const loggedOutMenuOptions = [
     { label: "Home", path: "/" },
-    { label: "Favorites", path: "/movies/favourites" },
-    { label: "Upcoming Movies", path: "/movies/upcoming" },
-    { label: "Add Fantasy Movie", path: "/fantasy" },
-    { label: "My Fantasy Movies", path: "/fantasyshow" },
-    { label: "My Reviews", path: "/myfavouritereviews" },
+    { label: "Upcoming", path: "/movies/upcoming" },
+    { label: "Popular", path: "/movies/popular" },
+    { label: "Top Rated", path: "/movies/top-rated" },
+    { label: "Actors", path: "/actors" },   
+
+    { label: "Sign In", path: "/signin" },
   ];
 
+  // Menu options for logged-in users
+  const loggedInMenuOptions = [
+    { label: "Home", path: "/" },
+    { label: "Upcoming", path: "/movies/upcoming" },
+    { label: "Popular", path: "/movies/popular" },
+    { label: "Top Rated", path: "/movies/top-rated" },
+    { label: "Actors", path: "/actors" },
+    { label: "Add Fantasy Movie", path: "/fantasy" },
+    { label: "My Fantasy Movies", path: "/fantasyshow" },
+    { label: "My Favorites", path: "/movies/favourites" },
+    { label: "My Reviews", path: "/myfavouritereviews" },
+    { label: "Sign Out", path: "/signout" },
+  ];
+
+  
+  const menuOptions = isLoggedIn ? loggedInMenuOptions : loggedOutMenuOptions;
+
   const handleMenuSelect = (pageURL: string) => {
+    if (pageURL === "/signout") {
+      setIsLoggedIn(false); 
+    }
     navigate(pageURL);
   };
 
