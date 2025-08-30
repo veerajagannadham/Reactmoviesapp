@@ -88,4 +88,13 @@ export interface FantasyMovie {
   cast: CastMember[];
 }
 
+export interface SignInFormData {
+  username: string;
+  password: string;
+}
+
+export interface SignInResults {
+  message: string;
+  token: string;
+}
 
