@@ -1,30 +1,28 @@
-# React + TypeScript + Vite
+ Name:  Veera Durga Jagannadham Maddula
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Demo: ... link to your YouTube video demonstration ......
 
-Currently, two official plugins are available:
+Overview.
+This repository contains full stack TMDB movie app uses ReactJS library.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Features.
+List view of Popular Movies
+List view of Top Rated Movies
+List view of Actors
+Detail View of Actors
+Hyperlinking on actor images
+Pagination - for data-listing pages.
+Storybook support
+Persist movie reviews to DynamoDB.
+Data Model
+Data entity for Actors
+Server state Caching
+Routing
+Private and Public routes (e.g. Movie Details)
+Functionality
+Additional language filter
+My fantasy movie and listing
 
-## Expanding the ESLint configuration
+Assignment 1 Integration:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Due to unexpected errors and issues I couldn't able completely integrate assignment 1.
